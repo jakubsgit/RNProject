@@ -17,20 +17,26 @@ const GoalInput = props => {
     <Modal visible={props.visible} animationType="slide">
       <View style={styles.inputContainer}>
         <TextInput
-          placeholder="Dadaj zadanie"
+          placeholder="Do kupienia"
           style={styles.textInput}
           onChangeText={goalInputHandler}
           value={enteredGoal}
         />
-        <View style={{flexDirection: 'row', padding: 20}}>
+        <View
+          style={{
+            flexDirection: "row",
+            padding: 20,
+            justifyContent: "space-between"
+          }}
+        >
           <Button
-            title="Nie dodawaj zadania!"
+            title="Powrót"
             color="red"
             onPress={props.canceled}
             style={styles.button}
           />
           <Button
-            title="Dodaj nowe zadanie!"
+            title="Dodaj produkt do kupienia"
             style={styles.button}
             onPress={addGoalHandler}
           />

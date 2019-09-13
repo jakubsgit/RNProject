@@ -1,25 +1,21 @@
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  FlatList
-} from "react-native";
+import { StyleSheet, Text, View, Button, FlatList } from "react-native";
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
 
 export default function App() {
-  
   const [goals, setGoals] = useState([]);
   const [isAddMode, setIsAddMode] = useState(false);
 
   const addGoalHandler = goalTitle => {
+    if (goalTitle.length === 0) {
+      return;
+    }
     setGoals(currentGoals => [
       ...currentGoals,
       { id: Math.random().toString(), value: goalTitle }
     ]);
-    setIsAddMode(false)
+    setIsAddMode(false);
   };
 
   const removeGoalHandler = goalId => {
@@ -40,11 +36,16 @@ export default function App() {
             color: "white"
           }}
         >
-          Teraz kazde zadanie jest prostsze do wykonania!
+          Aplikacja Jakuba & Mari do tworzenia listy zakupów.
         </Text>
       </View>
-      <Button title="Dodaj nowe zadanie!" onPress={() => setIsAddMode(true)}/>
-      <GoalInput visible={isAddMode} onAddGoal={addGoalHandler} canceled={() => setIsAddMode(false)}/>
+      <Button title="Dodaj produkt do kupienia!" onPress={() => setIsAddMode(true)} />
+      <GoalInput
+        visible={isAddMode}
+        onAddGoal={addGoalHandler}
+        canceled={() => setIsAddMode(false)}
+      />
+      {}
       <FlatList
         keyExtractor={(item, index) => item.id}
         data={goals}
@@ -65,12 +66,12 @@ const styles = StyleSheet.create({
     backgroundColor: "grey",
     padding: 50,
     color: "white",
-    height: '100%',
+    height: "100%"
   },
   welcome: {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    flex: 1,
+    flex: 1
   }
 });
